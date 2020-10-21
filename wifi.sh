@@ -19,7 +19,10 @@ if [ "$1" == "-l" ]; then
   exit 0
 fi
 
-conf=/etc/wpa_supplicant/$1.conf
+conf=/etc/wpa_supplicant/vered.conf
+if [ $# -gt 0 ]; then
+  conf=/etc/wpa_supplicant/$1.conf
+fi
 
 ip link set dev $iface mtu $mtu
 wpa_supplicant -B -i $iface -c $conf && dhcpcd $iface
